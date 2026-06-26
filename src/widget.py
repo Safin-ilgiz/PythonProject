@@ -1,5 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
-
+from datetime import datetime
 
 def mask_account_card(string_info: str) -> str:
     """Функция, которая маскирует номера карт и счетов"""
@@ -25,4 +25,9 @@ def mask_account_card(string_info: str) -> str:
 
 def get_date(date: str) -> str:
     """Функция, которая принимает строку с датой и возвращает в формате ДД.ММ.ГГГГ"""
-    return f"{date[8:10]}.{date[5:7]}.{date[:4]}"
+    only_date = date[:10]
+    date_datetime = datetime.fromisoformat(only_date)
+    day = date_datetime.day
+    month = date_datetime.month
+    year = date_datetime.year
+    return f"{day:02}.{month:02}.{year}"
